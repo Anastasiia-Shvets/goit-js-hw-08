@@ -81,4 +81,22 @@ const galleryHTML = images.map((image) => {
 }).join('');
 gallery.innerHTML = galleryHTML;
 
+gallery.addEventListener('click', ev => {
+    if (ev.target === 'IMG')
+        return `${image.original}`;
+    console.log(ev.target);
+})
 
+
+const instance = basicLightbox.create(`
+    <div class="modal">
+        <p>
+            Your first lightbox with just a few lines of code.
+            Yes, it's really that simple.
+        </p>
+    </div>
+`);
+
+instance.show();
+onShow: (instance) => { };
+onClose: (instance) => {};

@@ -19,8 +19,29 @@
     overflow: hidden;
 }
 body {
-    color: #fff;
+    font-family: 'Monserrat';
+    background-color: #fff;
 }
+/* 
+h1 {
+    color: #e7e7ef;
+        font-family: Montserrat;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 1.3em;
+        letter-spacing: 0.4px;
+}
+
+h2 {
+    color: #e6e6ea;
+        font-family: Montserrat;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.5em;
+        letter-spacing: 0.04px;
+} */
 
 
 
