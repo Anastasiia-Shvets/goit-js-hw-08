@@ -81,10 +81,23 @@ const galleryHTML = images.map((image) => {
 }).join('');
 gallery.innerHTML = galleryHTML;
 
-gallery.addEventListener('click', ev => {
-    if (ev.target === 'IMG')
+
+
+const galleryLinks = document.querySelectorAll('.gallery-link');
+
+galleryLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+    event.preventDefault();
+    });
+});
+
+
+
+galleryRef.addEventListener('click', ev => {
+    if (ev.target === ev.currentTarget) {
         return console.log(ev.target);
-    
+    }
+        
     const instance = basicLightbox.create(`
     <div class="modal">
         <p>
@@ -93,20 +106,10 @@ gallery.addEventListener('click', ev => {
         </p>
     </div>
 `);
-
     instance.show();
+
+onShow: (instance) => {};
+onClose: (instance) => {};
+
 })
 
-
-const instance = basicLightbox.create(`
-    <div class="modal">
-        <p>
-            Your first lightbox with just a few lines of code.
-            Yes, it's really that simple.
-        </p>
-    </div>
-`);
-
-instance.show();
-onShow: (instance) => { };
-onClose: (instance) => {};
