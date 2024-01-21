@@ -99,25 +99,22 @@ galleryLinks.forEach((link) => {
 
 
 galleryRef.addEventListener('click', ev => {
-    if (ev.target === ev.currentTarget) {
-        return console.log(ev.target);
-    }
+    if (ev.target === ev.currentTarget) {}
         
     const original = ev.target.getAttribute("data-source");
     const modalImg = basicLightbox.create(`
     <div><img src="${original}" data-source="${original}"></div>`,
         {
-            onShow: (instance) => {
-                console.log('Hello');
+            onShow: (modalImg) => {
+                document.addEventListener("keydown", onModalClose);
             },
-            onClose: (instance) => {
-                console.log('Bye');
+            onClose: (modalImg) => {
+                document.removeEventListener("keydown", onModalClose);
             }
         },
     );
     modalImg.show()
 
-document.addEventListener("keydown", onModalClose);
 function onModalClose(e) {
     if (e.code === "Escape") {
     modalImg.close();
