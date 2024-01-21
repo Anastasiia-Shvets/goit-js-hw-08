@@ -65,7 +65,7 @@ const images = [
     },
 ];
 
-const gallery = document.querySelector(".gallery");
+const galleryRef = document.querySelector(".gallery");
 
 function galleryRefTemplates() {
     const galleryHTML = images
@@ -82,7 +82,7 @@ function galleryRefTemplates() {
 </li>`;
     })
     .join("");
-    gallery.innerHTML = galleryHTML;
+    galleryRef.innerHTML = galleryHTML;
 }
 galleryRefTemplates();
 
@@ -98,7 +98,7 @@ galleryLinks.forEach((link) => {
 
 
 
-gallery.addEventListener('click', ev => {
+galleryRef.addEventListener('click', ev => {
     if (ev.target === ev.currentTarget) {
         return console.log(ev.target);
     }
