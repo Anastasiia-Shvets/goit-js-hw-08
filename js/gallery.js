@@ -67,19 +67,24 @@ const images = [
 
 const gallery = document.querySelector(".gallery");
 
-const galleryHTML = images.map((image) => {
-    return `<li class="gallery-item">
-    <a class="gallery-link" href="${image.original}">
+function galleryRefTemplates() {
+    const galleryHTML = images
+    .map(({ preview, original, description }) => {
+        return `<li class="gallery-item">
+    <a class="gallery-link" href="${original}">
     <img
         class="gallery-image"
-        src="${image.preview}"
-        data-source="${image.original}"
-        alt="${image.description}"
+        src="${preview}"
+        data-source="${original}"
+        alt="${description}"
     />
     </a>
 </li>`;
-}).join('');
-gallery.innerHTML = galleryHTML;
+    })
+    .join("");
+    gallery.innerHTML = galleryHTML;
+}
+galleryRefTemplates();
 
 
 
@@ -93,23 +98,30 @@ galleryLinks.forEach((link) => {
 
 
 
-galleryRef.addEventListener('click', ev => {
+gallery.addEventListener('click', ev => {
     if (ev.target === ev.currentTarget) {
         return console.log(ev.target);
     }
         
-    const instance = basicLightbox.create(`
-    <div class="modal">
-        <p>
-            Your first lightbox with just a few lines of code.
-            Yes, it's really that simple.
-        </p>
-    </div>
-`);
-    instance.show();
+    const original = ev.target.getAttribute("data-source");
+    const modalImg = basicLightbox.create(`
+    <div><img src="${original}" data-source="${original}"></div>`,
+        {
+            onShow: (instance) => {
+                console.log('Hello');
+            },
+            onClose: (instance) => {
+                console.log('Bye');
+            }
+        },
+    );
+    modalImg.show()
 
-onShow: (instance) => {};
-onClose: (instance) => {};
-
+document.addEventListener("keydown", onModalClose);
+function onModalClose(e) {
+    if (e.code === "Escape") {
+    modalImg.close();
+    }
+}
 })
 

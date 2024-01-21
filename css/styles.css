@@ -20,8 +20,12 @@
 body {
     font-family: 'Monserrat';
     background-color: #fff;
+}
+
+.conteiner {
     margin: auto;
     max-width: 1440px;
+    height: 848px;
 }
 
 h1 {
@@ -48,11 +52,17 @@ ul {
     list-style: none;
 }
 
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
 .gallery {
         display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 48px 24px;
+            gap: 48px;
         background: #FFF;
         padding: 100px 156px;
 }
