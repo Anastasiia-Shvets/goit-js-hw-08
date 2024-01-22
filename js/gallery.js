@@ -93,12 +93,14 @@ function onModalClose(e) {
         modalImg.close();
             }
 }
-        
+
 galleryRef.addEventListener('click', ev => {
     if (ev.target.classList.contains('gallery-image')) {
         ev.preventDefault();
+
         const original = ev.target.getAttribute("data-source");
-        modalImg = basicLightbox.create(`<div><img src="${original}" data-source="${original}"></div>`,{
+        modalImg = basicLightbox.create(`<div><img src="${original}" data-source="${original}"></div>`,
+            {
             onShow: (modalImg) => {
                 document.addEventListener("keydown", onModalClose);
                 console.log('Hello');
