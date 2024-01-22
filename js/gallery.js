@@ -86,39 +86,29 @@ function galleryRefTemplates() {
 }
 galleryRefTemplates();
 
+let modalImg = null;
 
-
-const galleryLinks = document.querySelectorAll('.gallery-link');
-
-galleryLinks.forEach((link) => {
-    link.addEventListener("click", (event) => {
-    event.preventDefault();
-    });
-});
-
-
-
-galleryRef.addEventListener('click', ev => {
-    if (ev.target === ev.currentTarget) {}
+function onModalClose(e) {
+    if (e.key === "Escape") {
+        modalImg.close();
+            }
+}
         
-    const original = ev.target.getAttribute("data-source");
-    const modalImg = basicLightbox.create(`
-    <div><img src="${original}" data-source="${original}"></div>`,
-        {
+galleryRef.addEventListener('click', ev => {
+    if (ev.target.classList.contains('gallery-image')) {
+        ev.preventDefault();
+        const original = ev.target.getAttribute("data-source");
+        modalImg = basicLightbox.create(`<div><img src="${original}" data-source="${original}"></div>`,{
             onShow: (modalImg) => {
                 document.addEventListener("keydown", onModalClose);
+                console.log('Hello');
             },
             onClose: (modalImg) => {
                 document.removeEventListener("keydown", onModalClose);
+                console.log('bye');
             }
         },
-    );
-    modalImg.show()
-
-function onModalClose(e) {
-    if (e.code === "Escape") {
-    modalImg.close();
+        );
+        modalImg.show()
     }
-}
-})
-
+});
