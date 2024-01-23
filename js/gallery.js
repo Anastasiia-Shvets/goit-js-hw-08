@@ -99,18 +99,17 @@ galleryRef.addEventListener('click', ev => {
         ev.preventDefault();
 
         const original = ev.target.getAttribute("data-source");
-        modalImg = basicLightbox.create(`<div><img src="${original}" data-source="${original}"></div>`,
+        modalImg = basicLightbox.create(
+            `<div><img src="${original}" data-source="${original}"></div>`,
             {
-            onShow: (modalImg) => {
+            onShow: (modalInstance) => {
                 document.addEventListener("keydown", onModalClose);
-                console.log('Hello');
             },
-            onClose: (modalImg) => {
+            onClose: (modalInstance) => {
                 document.removeEventListener("keydown", onModalClose);
-                console.log('bye');
+            },
             }
-        },
         );
-        modalImg.show()
+        modalInstance.show();
     }
 });
